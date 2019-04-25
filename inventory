@@ -11,3 +11,6 @@ acme-sea-asa1
 
 [cisco-nxos]
 acme-sea-nxos1
+
+[all:vars]
+ansible_python_interpreter=/usr/bin/python3
