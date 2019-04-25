@@ -4,13 +4,13 @@ node {
         checkout scm
     }
     stage ('Validate Generate Configurations Playbook') {
-        sh 'ansible-playbook generate_configurations.yaml --syntax-check'
+        sh 'ansible-playbook generate_configurations.yaml --syntax-check -e "ansible_python_interpreter=jenkins_build/bin/python"'
     }
     stage ('Render Configurations') {
-        sh 'ansible-playbook generate_configurations.yaml'
+        sh 'ansible-playbook generate_configurations.yaml -e "ansible_python_interpreter=jenkins_build/bin/python"'
     }
     stage ('Unit Testing') {
-        sh 'ansible-playbook deploy_configurations.yaml --syntax-check'
+        sh 'ansible-playbook deploy_configurations.yaml --syntax-check -e "ansible_python_interpreter=jenkins_build/bin/python"'
     }
     stage ('Deploy Configurations to Dev') {
     sh 'python3 -m venv jenkins_build'
